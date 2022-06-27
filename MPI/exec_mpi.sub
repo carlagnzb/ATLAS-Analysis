@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#SBATCH --job-name=mpi
+#SBATCH --output=mpi_output.out
+#SBATCH --error=mpi_error.err
+#SBATCH --qos=class_a
+#SBATCH --ntasks=1000
+#SBATCH --tasks-per-node=48
+
+module load singularity
+module load intel/2017.4
+
+start=$(date +%s)
+sh /Execution/execution_tot.sh
+# sh /Execution/execution_dask.sh
+
+end=$(date +%s)
+echo "Elapsed Time: $(($end-$start)) seconds"
